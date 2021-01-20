@@ -135,13 +135,11 @@ Use the removeFlavorByName function below to do the following:
 
 // console.log(originalFlavors.findIndex((element) => element == "Chocolate");
 
-function removeFlavorByName(arr, flav) {
-  let ind = arr.indexOf(flav);
-  console.log(ind);
-  arr.splice(ind, 1);
-  return originalFlavors;
+function removeFlavorByName(arr, str) {
+  let pos = arr.indexOf(str);
+  arr.splice(pos, 1);
+  return arr;
 }
-console.log(originalFlavors.length);
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. 
@@ -163,8 +161,14 @@ Use the filterByWord function below to do the following:
     DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/) {
-  /*your code here*/
+function filterByWord(arr, str) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].includes(str)) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/
@@ -179,25 +183,18 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/) {
-  /*code here*/
+function getAverageWordLength(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    // console.log(arr[i]);
+    // console.log(arr[i].split(" ").length)
+    count += arr[i].split(" ").length;
+  }
+  const averW = count / arr.length;
+  return averW;
 }
 
-/* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
-Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors 
-from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors and store it in an array called randomFlavors.
-
-Use the getRandomFlavors function and new arrays below to do the following:
-    1. Receive the four arrays with all the differnet flavors (originalFlavors is above, the others are below)
-    2. Randomly pick flavors from all four arrays
-    3. Return a new array called randomFlavors that has a lenght of 31
-
-    For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
-*/
-
-function getRandomFlavors(/*code here*/) {
-  /*code here*/
-}
+console.log(getAverageWordLength(originalFlavors));
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
@@ -225,6 +222,8 @@ const newFlavors = [
   "Rainbow Sherbet",
   "Rainbow Swirl",
 ];
+
+console.log(typeof newFlavors);
 
 const seasonalFlavors = [
   "America's Birthday Cake",
@@ -279,6 +278,48 @@ const regionalFlavors = [
   "Chocolate Chocolate Chip Cheesecake",
   "Caramel 'n' Cookies",
 ];
+
+/* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
+Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors 
+from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors and store it in an array called randomFlavors.
+
+Use the getRandomFlavors function and new arrays below to do the following:
+    1. Receive the four arrays with all the differnet flavors (originalFlavors is above, the others are below)
+    2. Randomly pick flavors from all four arrays
+    3. Return a new array called randomFlavors that has a lenght of 31
+
+    For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
+*/
+
+function getRandomFlavors(arr1, arr2, arr3, arr4) {
+  let newArr = [];
+  for (let i = 0; i < 31; i++) {
+    let randArr = Math.ceil(Math.random() * 4);
+    if (randArr === 1) {
+      let randString = Math.ceil(Math.random() * arr1.length);
+      newArr.push(arr1[randString]);
+    } else if (randArr === 2) {
+      let randString = Math.ceil(Math.random() * arr2.length);
+      newArr.push(arr1[randString]);
+    } else if (randArr === 3) {
+      let randString = Math.ceil(Math.random() * arr3.length);
+      newArr.push(arr1[randString]);
+    } else {
+      let randString = Math.ceil(Math.random() * arr4.length);
+      newArr.push(arr1[randString]);
+    }
+  }
+  return newArr;
+}
+
+console.log(
+  getRandomFlavors(
+    originalFlavors,
+    newFlavors,
+    seasonalFlavors,
+    regionalFlavors
+  ).length
+);
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo() {
